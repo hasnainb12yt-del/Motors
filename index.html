@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shehzad Motors — Quality Vehicles, Premium Service</title>
+    <meta
+      name="description"
+      content="Shehzad Motors — Explore quality vehicles and find the right car for your lifestyle."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+  </head>
+  <body>
+    <!-- ============================================
+         NAVIGATION BAR (sticky)
+         ============================================ -->
+    <header class="nav-bar" id="navBar">
+      <div class="nav-container">
+        <a href="#home" class="nav-logo" aria-label="Shehzad Motors home">
+          <svg class="nav-logo-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M7 22c0 0 3-9 9-9s9 9 9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="16" cy="11" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span class="nav-logo-text">Shehzad <em>Motors</em></span>
+        </a>
+
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#inventory" class="nav-link">Inventory</a>
+          <a href="#about" class="nav-link">About Us</a>
+          <a href="#visit" class="nav-link">Contact</a>
+          <a href="#visit" class="nav-cta">Visit Showroom</a>
+        </nav>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Shehzad Motors Showroom</p>
+        <h1 class="hero-title">Find Your Next Drive.</h1>
+        <p class="hero-subtitle">
+          Explore quality vehicles and discover the right car for your lifestyle.
+        </p>
+        <div class="hero-actions">
+          <a href="#inventory" class="btn btn-primary">Explore Inventory</a>
+          <a href="#visit" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FEATURED INVENTORY (first 6-8 cars)
+         ============================================ -->
+    <section class="section section-featured" id="featured">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Featured Vehicles</p>
+          <h2 class="section-title">Handpicked For You</h2>
+        </div>
+        <div class="car-grid" id="featuredGrid">
+          <!-- Cards rendered by JavaScript -->
+        </div>
+        <div class="section-footer">
+          <a href="#inventory" class="btn btn-outline">View All Cars</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         COMPLETE INVENTORY (filters + grid)
+         ============================================ -->
+    <section class="section section-inventory" id="inventory">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Complete Inventory</p>
+          <h2 class="section-title">Browse All Vehicles</h2>
+        </div>
+
+        <!-- Filter / Search / Sort controls -->
+        <div class="inventory-controls">
+          <div class="control-group control-search">
+            <label for="searchInput">Search</label>
+            <input type="text" id="searchInput" placeholder="Search by make or model…" />
+          </div>
+          <div class="control-group">
+            <label for="filterBrand">Brand</label>
+            <select id="filterBrand">
+              <option value="">All Brands</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="filterYear">Model Year</label>
+            <select id="filterYear">
+              <option value="">All Years</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="filterTransmission">Transmission</label>
+            <select id="filterTransmission">
+              <option value="">All Types</option>
+              <option value="Automatic">Automatic</option>
+              <option value="Manual">Manual</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="filterPrice">Price Range</label>
+            <select id="filterPrice">
+              <option value="">All Prices</option>
+              <option value="0-1000000">Up to 10 Lac</option>
+              <option value="1000000-2000000">10–20 Lac</option>
+              <option value="2000000-4000000">20–40 Lac</option>
+              <option value="4000000-99999999">Above 40 Lac</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="sortBy">Sort By</label>
+            <select id="sortBy">
+              <option value="default">Default</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="year-new">Newest Model Year</option>
+            </select>
+          </div>
+          <button class="btn-reset" id="resetFilters">Reset Filters</button>
+        </div>
+
+        <div class="inventory-count" id="inventoryCount"></div>
+
+        <div class="car-grid" id="inventoryGrid">
+          <!-- Cards rendered by JavaScript -->
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state hidden" id="emptyState">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2"/>
+            <path d="M18 36c0-7 6-12 14-12s14 5 14 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="24" cy="40" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="40" cy="40" r="4" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <h3>No vehicles match your filters</h3>
+          <p>Try adjusting your search or resetting the filters to see all available cars.</p>
+          <button class="btn btn-outline" id="emptyReset">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT US
+         ============================================ -->
+    <section class="section section-about" id="about">
+      <div class="container about-layout">
+        <div class="about-text">
+          <p class="section-eyebrow">About Us</p>
+          <h2 class="section-title">Committed To Helping You Find The Right Car</h2>
+          <p class="about-lead">
+            Shehzad Motors is a local car dealership dedicated to offering quality
+            vehicles and a straightforward, no-pressure buying experience.
+            Whether you are looking for a reliable daily commuter, a spacious
+            family car, or your next upgrade, our team is here to help you make
+            an informed choice.
+          </p>
+          <ul class="about-list">
+            <li><span class="about-check" aria-hidden="true">✓</span> Carefully selected, inspected vehicles</li>
+            <li><span class="about-check" aria-hidden="true">✓</span> Transparent pricing and honest information</li>
+            <li><span class="about-check" aria-hidden="true">✓</span> Test drives available on request</li>
+            <li><span class="about-check" aria-hidden="true">✓</span> Friendly, knowledgeable showroom staff</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <img
+            src="https://images.pexels.com/photos/18108314/pexels-photo-18108314.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+            alt="Cars displayed in a modern showroom"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         VISIT SHOWROOM
+         ============================================ -->
+    <section class="section section-visit" id="visit">
+      <div class="container visit-layout">
+        <div class="visit-card">
+          <p class="section-eyebrow">Visit Us</p>
+          <h2 class="section-title">Visit Shehzad Motors</h2>
+          <p class="visit-text">
+            Come see our vehicles in person. Our showroom is open six days a
+            week — we look forward to helping you find your next drive.
+          </p>
+
+          <div class="visit-details">
+            <div class="visit-row">
+              <span class="visit-label">Address</span>
+              <span class="visit-value">123 Main Road, Your City, Your Country</span>
+            </div>
+            <div class="visit-row">
+              <span class="visit-label">Phone</span>
+              <span class="visit-value">+92 300 1234567</span>
+            </div>
+            <div class="visit-row">
+              <span class="visit-label">Mon – Fri</span>
+              <span class="visit-value">9:00 AM – 7:00 PM</span>
+            </div>
+            <div class="visit-row">
+              <span class="visit-label">Saturday</span>
+              <span class="visit-value">10:00 AM – 6:00 PM</span>
+            </div>
+            <div class="visit-row">
+              <span class="visit-label">Sunday</span>
+              <span class="visit-value">Closed</span>
+            </div>
+          </div>
+
+          <div class="visit-actions">
+            <a href="https://www.google.com/maps" target="_blank" rel="noopener" class="btn btn-primary" id="directionsBtn">Get Directions</a>
+            <button class="btn btn-outline" id="bookVisitBtn">Book a Visit</button>
+          </div>
+        </div>
+
+        <div class="visit-map">
+          <iframe
+            src="https://www.google.com/maps?q=car+dealership&output=embed"
+            title="Showroom location map"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+      <div class="container footer-layout">
+        <div class="footer-brand">
+          <span class="footer-logo">Shehzad <em>Motors</em></span>
+          <p class="footer-tagline">Quality vehicles. Premium service. Honest advice.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="#inventory">Inventory</a>
+          <a href="#about">About Us</a>
+          <a href="#visit">Visit Showroom</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="tel:+923001234567">+92 300 1234567</a>
+          <a href="#" id="footerWhatsapp">WhatsApp Us</a>
+          <a href="mailto:info@shehzadmotors.com">info@shehzadmotors.com</a>
+          <span class="footer-static">123 Main Road, Your City</span>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <a href="#" target="_blank" rel="noopener">Facebook</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Shehzad Motors. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- ============================================
+         FLOATING WHATSAPP BUTTON
+         ============================================ -->
+    <a href="#" class="whatsapp-float" id="whatsappFloat" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+    </a>
+
+    <!-- ============================================
+         BACK TO TOP BUTTON
+         ============================================ -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <!-- ============================================
+         CAR DETAILS MODAL
+         ============================================ -->
+    <div class="modal-overlay hidden" id="carModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal">
+        <button class="modal-close" id="modalClose" aria-label="Close details">&times;</button>
+        <div class="modal-gallery">
+          <img id="modalMainImage" src="" alt="" />
+          <div class="modal-thumbs" id="modalThumbs"></div>
+        </div>
+        <div class="modal-details">
+          <span class="modal-status" id="modalStatus"></span>
+          <h2 id="modalTitle"></h2>
+          <p class="modal-price" id="modalPrice"></p>
+          <p class="modal-description" id="modalDescription"></p>
+          <div class="modal-specs" id="modalSpecs"></div>
+          <div class="modal-actions">
+            <button class="btn btn-primary" id="modalBookBtn">Book This Car</button>
+            <button class="btn btn-outline" id="modalInquiryBtn">Make an Inquiry</button>
+            <button class="btn btn-whatsapp" id="modalWhatsappBtn">WhatsApp Us</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         BOOKING / INQUIRY MODAL
+         ============================================ -->
+    <div class="modal-overlay hidden" id="formModal" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+      <div class="modal modal-form">
+        <button class="modal-close" id="formClose" aria-label="Close form">&times;</button>
+        <h2 id="formTitle">Book / Inquire</h2>
+        <form id="inquiryForm" novalidate>
+          <div class="form-field">
+            <label for="fName">Full Name <span class="req">*</span></label>
+            <input type="text" id="fName" name="fName" required />
+            <span class="form-error" id="errName"></span>
+          </div>
+          <div class="form-field">
+            <label for="fPhone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="fPhone" name="fPhone" required />
+            <span class="form-error" id="errPhone"></span>
+          </div>
+          <div class="form-field">
+            <label for="fEmail">Email (optional)</label>
+            <input type="email" id="fEmail" name="fEmail" />
+            <span class="form-error" id="errEmail"></span>
+          </div>
+          <div class="form-field">
+            <label for="fCar">Selected Car</label>
+            <input type="text" id="fCar" name="fCar" readonly />
+          </div>
+          <div class="form-field">
+            <label for="fType">Inquiry Type <span class="req">*</span></label>
+            <select id="fType" name="fType">
+              <option value="Buy a Car">Buy a Car</option>
+              <option value="Book a Test Drive">Book a Test Drive</option>
+              <option value="Ask a Question">Ask a Question</option>
+            </select>
+          </div>
+          <div class="form-field hidden" id="dateField">
+            <label for="fDate">Preferred Test Drive Date</label>
+            <input type="date" id="fDate" name="fDate" />
+          </div>
+          <div class="form-field">
+            <label for="fMessage">Message</label>
+            <textarea id="fMessage" name="fMessage" rows="3"></textarea>
+          </div>
+          <div class="form-feedback" id="formFeedback"></div>
+          <button type="submit" class="btn btn-primary btn-full">Send via WhatsApp</button>
+          <p class="form-note">
+            Your details will open in WhatsApp. The showroom must confirm your
+            booking before it is finalised.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
